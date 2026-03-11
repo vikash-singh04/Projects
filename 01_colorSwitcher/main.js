@@ -14,6 +14,8 @@ buttons.forEach((button) => {
             body.style.backgroundColor = "yellow";
         } else if (color === "green") {
             body.style.backgroundColor = "green";
+        } else if (color === "red") {
+            body.style.backgroundColor = "red";
         }
     })
 })
