@@ -1,21 +1,24 @@
-const hrs = document.querySelector('#hrs');
-const min = document.querySelector('#min');
-const sec = document.querySelector('#sec');
+function showTime() {
+    let currentTime = new Date();
+    let hours = currentTime.getHours();
+    let minutes = currentTime.getMinutes();
+    let seconds = currentTime.getSeconds();
+    let session = 'AM';
 
-setInterval(() => {
-    const corentTime = new Date();
-    
-    hrs.innerHTML = corentTime.getHours();
-    min.innerHTML = corentTime.getMinutes();
-    sec.innerHTML = corentTime.getSeconds();
+    hours = (hours < 10) ? '0' + hours : hours;
+    minutes = (minutes < 10) ? '0' + minutes : minutes;
+    seconds = (seconds < 10) ? '0' + seconds : seconds;
 
-    if(corentTime.getHours() < 10){
-        hrs.innerHTML = '0' + corentTime.getHours();
+
+    if (hours == 0) {
+        hours = 12;
+    } else if (hours > 12) {
+        hours -= 12;
+        session = 'PM';
     }
-    if(corentTime.getMinutes() < 10){
-        min.innerHTML = '0' + corentTime.getMinutes();
-    }
-    if(corentTime.getSeconds() < 10){
-        sec.innerHTML = '0' + corentTime.getSeconds();
-    }
-}, 1000);
+
+    let time = `${hours} : ${minutes} : ${seconds} ${session}`;
+    document.querySelector('h1').textContent = time;
+
+    setTimeout(showTime, 1000);
+}
